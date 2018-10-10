@@ -1,5 +1,6 @@
 .idea
 *.impl
+.target
 .class
 #Ignore thumbnails created by Windows
 Thumbs.db
