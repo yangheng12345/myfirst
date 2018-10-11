@@ -26,6 +26,10 @@ import java.util.concurrent.*;
  *          2、队列满了，核心的也满了，然后进行扩展至最大线程数
  *          3、如果都满了，尝试进行执行，如果执行失败，那么进行拒绝策略
  *
+ *    对象之间的关系，需要多了解
+ *    RunnableFuture是接口  FutureTask是具体的实现   ExecutorService是多线程接口，AbstractExecutorService 的作用是什么呢，这里
+ *    真正的实现是ThreadPoolExecutor
+ *
  */
 public class ExecutorServiceSubmitTest {
     public static void main(String[] args) throws  Exception{
