@@ -1,16 +1,21 @@
-第一步：线程池原理的了解，以及源码的阅读。
+第一步：线程池原理的了解，以及源码的阅读。线程池封装考虑了更多的东西，比如只唤醒一个，线程的取消，线程池的大小，线程池的
+    状态这些都需要在使用的时候详细的了解。
     1、了解其中的名字和各种实现类。 excutor、abstartExcutorService、ThreadPoolexecutor、futureTask、future、runable、
-    callable、Thread、QueueingFuture。
+        callable、Thread、QueueingFuture。
     2、调用过程介绍：ExecutorService调用他的execute方法，方法生成work实例，通过线程数进行判断是否需要直接新建，放入队列
-    ，扩展到最大线程数，其中work包含Thread属性，运行work后调用runWork方法，runWork调用我们包装好的FutureTask的run方法。
-    run方法调用的是callable的call方法（再转化为futureTask的，通过适配器都转化为了callable，方法 Executors.callable(runnable, result);重要的是方法的重写）
+        ，扩展到最大线程数，其中work包含Thread属性，运行work后调用runWork方法，runWork调用我们包装好的FutureTask的run方法。
+        run方法调用的是callable的call方法（再转化为futureTask的，通过适配器都转化为了callable，方法
+        Executors.callable(runnable, result);重要的是方法的重写）
     3、CompletionService 和ExecutorService的却别：
-    CompletionService 把ExecutorService进行包装，其中定义的类QueueingFuture继承了FutureTask方法，CompletionService拥有自己的队列completionQueue，重写FutureTask的done（）方法，把完成的放入队列中，
-    然后通过task方法进行取出后future，然后进行get方法。
-    task方法有阻塞，get方法无阻塞。
+        CompletionService 把ExecutorService进行包装，其中定义的类QueueingFuture继承了FutureTask方法，CompletionService
+        拥有自己的队列completionQueue，重写FutureTask的done（）方法，把完成的放入队列中，
+        然后通过task方法进行取出后future，然后进行get方法。
+        task方法有阻塞，get方法无阻塞。
 
 第二步：简单了解底层的CompareAndSwap
     1、了解volatile和synchronized的区别：一个是内存的，一个是锁定class文件头，volatile是自旋锁。
     2、Atomic变量都是采用CAS原来，通过操作内存的单指令保证线程的安全性。
+        CAS中遇到的问题以及解决方案：
+        ABA问题，方案采用AtomicStampedReference类进行解决（因为带着时间戳，所以就解决了重复赋值的问题咯）
     3、乐观锁和悲观锁：synchronized和lock区别。
         代码阅读：
