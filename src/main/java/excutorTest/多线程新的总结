@@ -19,3 +19,13 @@
         ABA问题，方案采用AtomicStampedReference类进行解决（因为带着时间戳，所以就解决了重复赋值的问题咯）
     3、乐观锁和悲观锁：synchronized和lock区别。
         代码阅读：
+        重入锁 独占锁 共享锁:https://blog.csdn.net/u010173095/article/details/78621170
+    4、lock的使用及原理介绍
+        放在
+        https://blog.csdn.net/xfcone/article/details/52103944
+        https://www.cnblogs.com/zhanjindong/p/java-concurrent-package-aqs-AbstractQueuedSynchronizer.html
+        http://ifeve.com/introduce-abstractqueuedsynchronizer/
+        https://blog.csdn.net/pfnie/article/details/77599618
+        https://www.cnblogs.com/micrari/p/6937995.html
+        https://blog.csdn.net/yuenkin/article/details/50867530
+
