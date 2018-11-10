@@ -46,5 +46,13 @@
             <artifactId>jsoup</artifactId>
             <version>1.7.2</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.22.Final</version>
+        </dependency>
+
     </dependencies>
 </project>
