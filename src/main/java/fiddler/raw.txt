@@ -1,0 +1,16 @@
+POST http://10.134.132.176:8000/prpall/business/selectProposal.do?pageSize=10&pageNo=1 HTTP/1.1
+Accept: */*
+Accept-Language: zh-cn
+Referer: http://10.134.132.176:8000/prpall/business/prepareQueryCode.do
+x-requested-with: XMLHttpRequest
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+UA-CPU: AMD64
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Win64; x64; Trident/4.0; .NET CLR 2.0.50727; SLCC2; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E; Tablet PC 2.0)
+Host: 10.134.132.176:8000
+Content-Length: 1378
+Proxy-Connection: Keep-Alive
+Pragma: no-cache
+Cookie: BOCINS_prpall_Cookie=LXQjccSbsC8RWL24CXlDpBLGpXxP83FHT4nbdTmh9VvnTG8Q7pln!-852860245; JSESSIONID=Tbd2ccSJ1q3hXjbpjbw4mh891vjyH161P2QrTLfRP1YqKl2Tp0Ms!2008639556; BOCINS_cif_Cookie=nXJhccJfchtK1p6FDGz3qTxQQyX9bnyGJvyD4VclxJSysJtkp4Jq!-1421166728
+
+comCode=41012200&riskCode=DAA&prpCproposalVo.checkFlag=&prpCproposalVo.underWriteFlag=&prpCproposalVo.strStartDate=&prpCproposalVo.othFlag=&prpCproposalVo.checkUpCode=&prpCproposalVo.operatorCode1=&prpCproposalVo.businessNature=&noNcheckFlag=0&jfcdURL=http://10.134.132.176:8100/cbc&prpallURL=http://10.134.132.176:8000/prpall&bizNoZ=&pageNo_=1&pageSize_=10&scmIsOpen=1111100000&searchConditionSwitch=0&queryinterval=01&electronicPolicyFlag=0&isupdate_pro=&queryMenuFlag=1&isClickPrint=1&isClickBrowse=1&prpCproposalVo.proposalNo=&prpCproposalVo.policyNo=&prpCproposalVo.licenseNo=&prpCproposalVo.vinNo=&prpCproposalVo.insuredCode=&prpCproposalVo.insuredName=&prpCproposalVo.contractNo=&prpCproposalVo.operateDate=2018-12-15&prpCproposalVo.operateDate2=2018-12-21&prpCproposalVo.startDate=2018-12-16&prpCproposalVo.startDate2=2018-12-22&prpCproposalVo.dmFlag=all&prpCproposalVo.underWriteFlagC=&prpCproposalVo.brandName=&prpCproposalVo.engineNo=&prpCproposalVo.frameNo=&prpCproposalVo.riskCode=DAA,DZA&prpCproposalVo.appliCode=&prpCproposalVo.apliName=&prpCproposalVo.makeCom=&makeComDes=&prpCproposalVo.operatorCode=&operatorCodeDes=&prpCproposalVo.comCode=&comCodeDes=&prpCproposalVo.handlerCode=&handlerCodeDes=&prpCproposalVo.handler1Code=&handler1CodeDes=&prpCproposalVo.endDate=&prpCproposalVo.endDate2=&prpCproposalVo.underWriteEndDate=&prpCproposalVo.underWriteEndDate2=
