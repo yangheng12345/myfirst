@@ -7,6 +7,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,9 @@ public class FiddlerForJava {
         System.out.println("------start-----------");
         //第一步，读取Raw文件
         try {
-            FileReader fr = new FileReader("D:\\testproject\\nettyTest\\myfirst\\src\\main\\java\\fiddler\\raw.txt");
+            File directory = new File("");
+            System.out.println(directory.getCanonicalPath());
+            FileReader fr = new FileReader("src/main/java/fiddler/raw.txt");
             BufferedReader bf = new BufferedReader(fr);
             String str = "";
             // 按行读取字符串
