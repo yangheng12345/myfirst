@@ -1,6 +1,7 @@
 package fiddler;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -17,23 +18,26 @@ public class FiddlerForJava {
 
     //请求结果放入类中
     private static StringBuilder result = new StringBuilder();
+    private static String className = "Demo";
+    private static String startString = "import org.apache.http.NameValuePair;\n" +
+            "import org.apache.http.message.BasicNameValuePair;\npublic class " + className + " {\n" +
+            "    public static void main(String[] args) {\n";
+    private static String engString = "        \n" +
+            "    }\n" +
+            "}\n";
 
     private static List<NameValuePair> headers = new ArrayList<>();
 
     private static List<NameValuePair> bodys = Lists.newArrayList();
 
-    private static String className = "Demo";
-
     private static String url = "";
 
     public static void main(String[] args) {
-        System.out.println("hello is my first");
         System.out.println("------start-----------");
         //第一步，读取Raw文件
         try {
             FileReader fr = new FileReader("D:\\testproject\\nettyTest\\myfirst\\src\\main\\java\\fiddler\\raw.txt");
             BufferedReader bf = new BufferedReader(fr);
-
             String str = "";
             // 按行读取字符串
             while ((str = bf.readLine()) != null) {
@@ -42,9 +46,27 @@ public class FiddlerForJava {
             }
 
         } catch (Exception e) {
-
         }
         System.out.println("------end-----------");
+        result.append(startString);
+        result.append("String url = \"" + url + "\";\n");
+        addResult();
+        result.append(engString);
+        System.out.println(result.toString());
+    }
+
+    private static void addResult() {
+        if (CollectionUtils.isNotEmpty(headers)) {
+            for (int i = 0; i < headers.size(); i++) {
+                result.append("NameValuePair " + getHeardByHandleForJava(headers.get(i).getName()) + " = new BasicNameValuePair(\"" + headers.get(i).getName() + "\", \"" + headers.get(i).getValue() + "\"); \n");
+            }
+        }
+        result.append("\n");
+        if (CollectionUtils.isNotEmpty(bodys)) {
+            for (int i = 0; i < bodys.size(); i++) {
+                result.append("NameValuePair " + getHeardByHandleForJava(bodys.get(i).getName()) + " = new BasicNameValuePair(\"" + bodys.get(i).getName() + "\", \"" + bodys.get(i).getValue() + "\"); \n");
+            }
+        }
     }
 
     private static void byRowAddResult(String str) {
@@ -86,11 +108,12 @@ public class FiddlerForJava {
                     String s = split[i];
                     if (StringUtils.isNotEmpty(s)) {
                         String[] strings = s.split("=");
+                        String name = getHeardByHandle(strings[0]);
                         if (strings != null && strings.length > 1) {
-                            NameValuePair nameValuePair = new BasicNameValuePair(strings[0], strings[1]);
+                            NameValuePair nameValuePair = new BasicNameValuePair(name, strings[1]);
                             bodys.add(nameValuePair);
                         } else if (strings != null && strings.length > 0) {
-                            NameValuePair nameValuePair = new BasicNameValuePair(strings[0], "");
+                            NameValuePair nameValuePair = new BasicNameValuePair(name, "");
                             bodys.add(nameValuePair);
                         }
                     }
@@ -102,13 +125,23 @@ public class FiddlerForJava {
     /**
      * 添加头部代码
      *
-     * @param heard
+     * @param header
      * @param str
      */
-    private static void appendHeader(String heard, String str) {
-        String substring = str.substring(str.indexOf(heard));
-        NameValuePair nameValuePair = new BasicNameValuePair(heard, substring);
+    private static void appendHeader(String header, String str) {
+        String substring = str.substring(str.indexOf(header));
+        header = getHeardByHandle(header);
+        NameValuePair nameValuePair = new BasicNameValuePair(header, substring);
         headers.add(nameValuePair);
+    }
+
+    private static String getHeardByHandle(String header) {
+
+        return header.replace(":", "");
+    }
+
+    private static String getHeardByHandleForJava(String header) {
+        return header.replace(":", "").replace("-", "_").replace(".", "_");
     }
 
     /**
