@@ -21,6 +21,9 @@ public class ChromeTest {
 //        doByServer();
     }
 
+    /**
+     * 远程启动
+     */
     public static void doByServer(){
 //        WebDriver driver = Driver.getGoogleDriver("http://localhost:4446/wd/hub");
         DesiredCapabilities chrome = DesiredCapabilities.chrome();
@@ -39,6 +42,10 @@ public class ChromeTest {
         }
 
     }
+
+    /**
+     * 本地启动
+     */
     public static  void doByLocal(){
         //    src/main/java/selenium/SeleniumFile/chromedriver.exe
         //    src/main/java/selenium/SeleniumFile/chromedriver.exe

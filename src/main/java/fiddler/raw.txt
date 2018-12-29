@@ -1,12 +1,16 @@
-GET http://10.134.132.176:8000/prpall/business/editCitemCar.do?editType=NEW&bizType=PROPOSAL&bizNo=&riskCode=DAA&applyNo=&startDate=2018-12-22&endDate=2019-12-21&startHour=0&endHour=24&endorType=&taskID_Ppms=&prpallLinkPpmsFlag=&operateDate=2018-12-21&motorFastTrack=&operatorProjectCode=KBDAA201841010000000139,KBDAA201841010000000203&reload=&rnd320=Fri%20Dec%2021%2021:00:58%20UTC+0800%202018 HTTP/1.1
+POST http://10.134.132.176:8000/prpall/business/selectRenewal.do?pageSize=10&pageNo=1 HTTP/1.1
 Accept: */*
 Accept-Language: zh-cn
-Referer: http://10.134.132.176:8000/prpall/business/prepareEdit.do?bizType=PROPOSAL&editType=NEW&isEnterPrjectFlag=N&operatorProjectCode=KBDAA201841010000000139,KBDAA201841010000000203
+Referer: http://10.134.132.176:8000/prpall/business/editRenewalSearch.do
 x-requested-with: XMLHttpRequest
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 UA-CPU: AMD64
 Accept-Encoding: gzip, deflate
 User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Win64; x64; Trident/4.0; .NET CLR 2.0.50727; SLCC2; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E; Tablet PC 2.0)
 Host: 10.134.132.176:8000
+Content-Length: 231
 Proxy-Connection: Keep-Alive
-Cookie: BOCINS_prpall_Cookie=LXQjccSbsC8RWL24CXlDpBLGpXxP83FHT4nbdTmh9VvnTG8Q7pln!-852860245; JSESSIONID=Tbd2ccSJ1q3hXjbpjbw4mh891vjyH161P2QrTLfRP1YqKl2Tp0Ms!2008639556; BOCINS_cif_Cookie=nXJhccJfchtK1p6FDGz3qTxQQyX9bnyGJvyD4VclxJSysJtkp4Jq!-1421166728
+Pragma: no-cache
+Cookie: JSESSIONID=2Mxbcl2bf832yHB263JyfmKT46v2dW6yXhcfCtRQ4ykHN9MPmJLD!-625764307; BOCINS_prpall_Cookie=M7w2cl2NTLD8wKv3ng1ZrYv66xLspQyY1bFtYMp2fh2HGJdft2l5!-211562057
 
+prpCrenewalVo.policyNo=&prpCrenewalVo.othFlag=&prpCrenewalVo.engineNo=&prpCrenewalVo.frameNo=&prpCrenewalVo.vinNo=&prpCrenewalVo.licenseNo=%D4%A5A00U38&prpCrenewalVo.licenseColorCode=&prpCrenewalVo.licenseType=02&validateCodeInput=
