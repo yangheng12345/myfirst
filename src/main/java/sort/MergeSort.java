@@ -1,8 +1,9 @@
 package sort;
 
 /**
- * 归并排序
+ * 归并排序：就是找旁边的人归并，而且有相对的顺序了已经，所以当然排的快了
  * 时间复杂度：O(nlgn)
+ * 动态图演示：https://www.cnblogs.com/onepixel/articles/7674659.html
  */
 public class MergeSort {
     public static void merSort(int[] arr, int left, int right) {

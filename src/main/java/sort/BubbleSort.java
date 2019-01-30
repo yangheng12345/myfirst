@@ -1,7 +1,9 @@
 package sort;
 
 /**
+ * 冒泡排序
  * 算法复杂度：o（n2）
+ * 动态图演示：https://www.cnblogs.com/onepixel/articles/7674659.html
  */
 public class BubbleSort {
     public static void main(String[] args) {

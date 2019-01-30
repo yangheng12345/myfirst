@@ -1,8 +1,9 @@
 package sort;
 
 /**
- * 希尔排序主要是有这个步长，步长到1即表示算法执行完了
+ * 希尔排序主要是有这个步长，步长到1即表示算法执行完了，1和 1+4，1+8比较，2和2+4,2+8比较就可以了，依次缩减步长
  * 算法复杂度：o（n1.3）
+ * 动态图演示：https://www.cnblogs.com/onepixel/articles/7674659.html
  */
 public class ShellSort {
     public static void main(String[] args) {

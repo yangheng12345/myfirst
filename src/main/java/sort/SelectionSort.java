@@ -3,6 +3,8 @@ package sort;
 /**
  * 和冒泡排序超级相似，但是这个是找到最小的才交换值，冒泡排序不是这样的，冒泡是没找到一个元素就开始冒泡比较
  * 算法复杂度：o（n2）
+ *
+ * 动态图演示：https://www.cnblogs.com/onepixel/articles/7674659.html
  */
 public class SelectionSort {
 

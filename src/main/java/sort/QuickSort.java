@@ -7,6 +7,8 @@ import java.util.*;
  *  https://jingyan.baidu.com/article/d45ad148905ccf69552b80d9.html
  *  理解：第一趟排序，保证轴左边的一定小于右边的值，一直递归下去，复杂度就是O(nlogn)
  *  https://blog.csdn.net/Advance_/article/details/81880509
+ *
+ *  动态图演示：https://www.cnblogs.com/onepixel/articles/7674659.html
  */
 public class QuickSort {
     public static void main(String[] args) {

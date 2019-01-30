@@ -4,6 +4,7 @@ package sort;
  * 堆排序是选择排序的一种，对排序只是把选择排序刚开始比较的结果记录下来了，这样就少了比较
  * https://www.cnblogs.com/MOBIN/p/5374217.html
  * 最差的情况是，nlog2n
+ * 动态图演示：https://www.cnblogs.com/onepixel/articles/7674659.html
  */
 public class HeapSort {
     int[] arr;
