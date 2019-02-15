@@ -88,16 +88,16 @@ public class ExecutorServiceSubmitTest {
         //遍历任务的结果
         for (Future<String> fs : resultList) {
             System.out.println(fs.get());
-//            try {
-//                System.out.println(fs.get());     //打印各个线程（任务）执行的结果
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            } catch (ExecutionException e) {
-//                e.printStackTrace();
-//            } finally {
-//                //启动一次顺序关闭，执行以前提交的任务，但不接受新任务。如果已经关闭，则调用没有其他作用。
-//                executorService.shutdown();
-//            }
+            try {
+                System.out.println(fs.get());     //打印各个线程（任务）执行的结果
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } finally {
+                //启动一次顺序关闭，执行以前提交的任务，但不接受新任务。如果已经关闭，则调用没有其他作用。
+                executorService.shutdown();
+            }
         }
     }
 
@@ -114,13 +114,14 @@ public class ExecutorServiceSubmitTest {
          * @return
          * @throws Exception
          */
+        @Override
         public String call() throws Exception {
             System.out.println("call()方法被自动调用,干活！！！             " + Thread.currentThread().getName());
-            if (new Random().nextBoolean())
-                throw new TaskException("Meet error in task." + Thread.currentThread().getName());
+            if (new Random().nextBoolean()){}
+                //throw new TaskException("Meet error in task." + Thread.currentThread().getName());
 
             //一个模拟耗时的操作
-            for (int i = 999999; i > 0; i--) ;
+            for (int i = 999999; i > 0; i--) {};
             return "call()方法被自动调用，任务的结果是：" + id + "    " + Thread.currentThread().getName();
         }
         class TaskException extends Exception {
