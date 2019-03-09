@@ -9,7 +9,7 @@ Accept-Encoding: gzip, deflate
 User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Win64; x64; Trident/4.0; .NET CLR 2.0.50727; SLCC2; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E; Tablet PC 2.0)
 Host: 10.134.132.176:8000
 Content-Length: 231
-Proxy-Connection: Keep-Alive
+spiders-Connection: Keep-Alive
 Pragma: no-cache
 Cookie: JSESSIONID=2Mxbcl2bf832yHB263JyfmKT46v2dW6yXhcfCtRQ4ykHN9MPmJLD!-625764307; BOCINS_prpall_Cookie=M7w2cl2NTLD8wKv3ng1ZrYv66xLspQyY1bFtYMp2fh2HGJdft2l5!-211562057
 

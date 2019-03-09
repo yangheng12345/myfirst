@@ -12,7 +12,7 @@ public class Demo {
         NameValuePair Accept_Encoding = new BasicNameValuePair("Accept-Encoding", "Accept-Encoding: gzip, deflate");
         NameValuePair User_Agent = new BasicNameValuePair("User-Agent", "User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Win64; x64; Trident/4.0; .NET CLR 2.0.50727; SLCC2; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E; Tablet PC 2.0)");
         NameValuePair Host = new BasicNameValuePair("Host", "Host: 10.134.132.176:8000");
-        NameValuePair Proxy_Connection = new BasicNameValuePair("Proxy-Connection", "Proxy-Connection: Keep-Alive");
+        NameValuePair Proxy_Connection = new BasicNameValuePair("spiders-Connection", "spiders-Connection: Keep-Alive");
         NameValuePair Pragma = new BasicNameValuePair("Pragma", "Pragma: no-cache");
 
         NameValuePair prpCrenewalVo_policyNo = new BasicNameValuePair("prpCrenewalVo.policyNo", "");

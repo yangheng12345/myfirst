@@ -87,7 +87,7 @@ public class FiddlerForJava {
                 case "Accept-Encoding:":
                 case "User-Agent:":
                 case "Host:":
-                case "Proxy-Connection:":
+                case "spiders-Connection:":
                 case "Pragma:":
                 case "x-prototype-version:":
                 case "Accept:":
