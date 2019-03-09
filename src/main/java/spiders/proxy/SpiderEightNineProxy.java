@@ -15,38 +15,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  89免费代理
- *  网址：http://www.89ip.cn/
+ * 89免费代理
+ * 网址：http://www.89ip.cn/
  */
 public class SpiderEightNineProxy {
-
+    /**
+     * 网站首页
+     */
     public final static String query_url = "http://www.89ip.cn/";
-    private static List<ProxyResponseDto> getList(String url,List<ProxyResponseDto> proxyResponseDtoList){
+
+    private static List<ProxyResponseDto> getList(String url, List<ProxyResponseDto> proxyResponseDtoList) {
         try {
             HttpClientResult httpClientResult = HttpClientUtils.doGet(url, HeaderUtils.makeCommonRequestHeaders());
             String content = httpClientResult.getContent();
-            if(StringUtils.isNotEmpty(content)){
+            if (StringUtils.isNotEmpty(content)) {
                 Document parse = Jsoup.parse(content);
                 Elements table = parse.getElementsByClass("layui-table");
-                if(CollectionUtils.isNotEmpty(table)){
+                if (CollectionUtils.isNotEmpty(table)) {
                     Element element = table.get(0);
                     Elements tbodys = element.getElementsByTag("tbody");
-                    Element tbody = tbodys.get(0);
-                    Elements trs = tbody.getElementsByTag("tr");
+                    if (CollectionUtils.isNotEmpty(tbodys)) {
+                        Element tbody = tbodys.get(0);
+                        Elements trs = tbody.getElementsByTag("tr");
 
-                    if(CollectionUtils.isNotEmpty(trs)){
-                        proxyResponseDtoList.addAll(parseResult(trs));
-                        Elements elementsByClass = parse.getElementsByClass("layui-laypage-next");
-                        String href = elementsByClass.get(0).attr("href");
-//                        elementsByClass.get(0).get
-                        String nextUrl = query_url +"/"+href ;
-                        System.out.println(href);
-                        getList(nextUrl,proxyResponseDtoList);
-                        //
-                    }else {
-                        return proxyResponseDtoList;
+                        if (CollectionUtils.isNotEmpty(trs)) {
+                            proxyResponseDtoList.addAll(parseResult(trs));
+                            //进行下一页的操作
+                            Elements elementsByClass = parse.getElementsByClass("layui-laypage-next");
+                            String href = elementsByClass.get(0).attr("href");
+                            //拼接下一页的url
+                            String nextUrl = query_url + "/" + href;
+                            System.out.println(href);
+                            getList(nextUrl, proxyResponseDtoList);
+                        } else {
+                            return proxyResponseDtoList;
+                        }
                     }
-
                 }
             }
         } catch (Exception e) {
@@ -55,9 +59,15 @@ public class SpiderEightNineProxy {
         return proxyResponseDtoList;
     }
 
+    /**
+     * 按照网页解析出代理的信息
+     *
+     * @param trs
+     * @return
+     */
     private static List<ProxyResponseDto> parseResult(Elements trs) {
         List<ProxyResponseDto> proxyResponseDtoList = new ArrayList<>();
-        for(Element element : trs){
+        for (Element element : trs) {
             Elements tds = element.getElementsByTag("td");
             ProxyResponseDto proxyResponseDto = new ProxyResponseDto();
             proxyResponseDto.setIp(tds.get(0).text().trim());
@@ -72,10 +82,10 @@ public class SpiderEightNineProxy {
 
     public static void main(String[] args) {
         List<ProxyResponseDto> list = new ArrayList<>();
-        getList(query_url,list);
-        System.out.println("代理总数量"+list.size());
-        if(CollectionUtils.isNotEmpty(list)){
-            for (ProxyResponseDto proxyResponseDto : list){
+        getList(query_url, list);
+        System.out.println("代理总数量" + list.size());
+        if (CollectionUtils.isNotEmpty(list)) {
+            for (ProxyResponseDto proxyResponseDto : list) {
                 System.out.println(proxyResponseDto);
             }
         }
