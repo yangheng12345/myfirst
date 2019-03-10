@@ -1,5 +1,7 @@
 package spiders.util;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
@@ -24,12 +26,12 @@ public class HttpClientUtils {
     /**
      * 设置连接超时时间，单位毫秒。
      */
-    private static final int CONNECT_TIMEOUT = 6000;
+    private static final int CONNECT_TIMEOUT = 3000;
 
     /**
      * 请求获取数据的超时时间(即响应时间)，单位毫秒。
      */
-    private static final int SOCKET_TIMEOUT = 6000;
+    private static final int SOCKET_TIMEOUT = 3000;
 
     /**
      * 发送get请求；不带请求头和请求参数
@@ -39,7 +41,7 @@ public class HttpClientUtils {
      * @throws Exception
      */
     public static HttpClientResult doGet(String url) throws Exception {
-        return doGet(url, null, null);
+        return doGet(url, null, null,null);
     }
 
     /**
@@ -51,7 +53,7 @@ public class HttpClientUtils {
      * @throws Exception
      */
     public static HttpClientResult doGet(String url,  List<NameValuePair> header) throws Exception {
-        return doGet(url, header, null);
+        return doGet(url, header, null,null);
     }
 
     /**
@@ -63,7 +65,7 @@ public class HttpClientUtils {
      * @throws Exception
      */
     public static HttpClientResult doGet(String url,  Map<String, String> params) throws Exception {
-        return doGet(url, null, params);
+        return doGet(url, null, params,null);
     }
 
     /**
@@ -75,7 +77,7 @@ public class HttpClientUtils {
      * @return
      * @throws Exception
      */
-    public static HttpClientResult doGet(String url,  List<NameValuePair>  headers, Map<String, String> params) throws Exception {
+    public static HttpClientResult doGet(String url,  List<NameValuePair>  headers, Map<String, String> params,HttpHost proxy) throws Exception {
         // 创建httpClient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -96,7 +98,7 @@ public class HttpClientUtils {
          * 超时时间，单位毫秒。这个属性是新加的属性，因为目前版本是可以共享连接池的。
          * setSocketTimeout：请求获取数据的超时时间(即响应时间)，单位毫秒。 如果访问一个接口，多少时间内无法返回数据，就直接放弃此次调用。
          */
-        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(CONNECT_TIMEOUT).setSocketTimeout(SOCKET_TIMEOUT).build();
+        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(CONNECT_TIMEOUT).setSocketTimeout(SOCKET_TIMEOUT).setProxy(proxy).build();
         httpGet.setConfig(requestConfig);
 
         // 设置请求头
@@ -110,7 +112,7 @@ public class HttpClientUtils {
             return getHttpClientResult(httpResponse, httpClient, httpGet);
         } finally {
             // 释放资源
-            release(httpResponse, httpClient);
+            release(httpResponse, httpClient,httpGet);
         }
     }
 
@@ -180,7 +182,7 @@ public class HttpClientUtils {
             return getHttpClientResult(httpResponse, httpClient, httpPost);
         } finally {
             // 释放资源
-            release(httpResponse, httpClient);
+            release(httpResponse, httpClient,httpPost);
         }
     }
 
@@ -216,7 +218,7 @@ public class HttpClientUtils {
         try {
             return getHttpClientResult(httpResponse, httpClient, httpPut);
         } finally {
-            release(httpResponse, httpClient);
+            release(httpResponse, httpClient,httpPut);
         }
     }
 
@@ -237,7 +239,7 @@ public class HttpClientUtils {
         try {
             return getHttpClientResult(httpResponse, httpClient, httpDelete);
         } finally {
-            release(httpResponse, httpClient);
+            release(httpResponse, httpClient,httpDelete);
         }
     }
 
@@ -328,13 +330,24 @@ public class HttpClientUtils {
      * @param httpClient
      * @throws IOException
      */
-    public static void release(CloseableHttpResponse httpResponse, CloseableHttpClient httpClient) throws IOException {
+    public static void release(CloseableHttpResponse httpResponse, CloseableHttpClient httpClient,HttpRequestBase request) throws IOException {
         // 释放资源
         if (httpResponse != null) {
+            HttpEntity entity = httpResponse.getEntity();
+            try
+            {
+                EntityUtils.consume(entity);
+            }
+            catch(IOException e)
+            {
+            }
             httpResponse.close();
         }
         if (httpClient != null) {
             httpClient.close();
+        }
+        if(request != null){
+            request.releaseConnection();
         }
     }
 
