@@ -62,7 +62,7 @@ public class Checkpoint {
     question.print_plus();
   }
 
-  public int[][] getArray() {
+  public int[][] getArray() { 
     return array;
   }
 
